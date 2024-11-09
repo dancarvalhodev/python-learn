@@ -14,17 +14,13 @@ senha_digitada = input('Senha: ')
 
 senha_permitida = '123456'
 
-if entrada == 'E' and senha_digitada == senha_permitida:
+if (entrada == 'E' or entrada == 'e') and senha_digitada == senha_permitida:
     print('Entrar')
 else:
     print('Sair')
 
-# Avaliação de curto cirtuito
-print(True and True)
-print(True and True and True)
-print(True and False and True)
-print(True and 0 and True)
-print(bool(0))
-print(bool(0.0))
-print(bool(''))
-print(bool(' '))
+# Avaliação de curto cirtuito (para na primeira verdadeira)
+print(True or False or 0 or 'abc')
+print(0 or False or 0 or 'abc') # Retorna o abc, o valor em si
+senha = input('Senha: ') or 'Sem senha'
+print(senha)
