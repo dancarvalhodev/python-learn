@@ -15,47 +15,44 @@ Faça a contagem de tentativas do seu
 usuário.
 """
 
-palavra = '******'
+palavra_secreta = 'macaco'
+palavra = ''
+palavra_sendo_descoberta = ''
+
+for letra in palavra_secreta:
+    palavra += '*'
+
 
 while True:
-    palavra_secreta = 'chaves'
-    
-
     try:
-        letra = input('Digite APENAS UMA letra: ').lower()
+        letra = input('Digite uma letra: ').lower()
 
         if len(letra) != 1:
             print('Digite apenas uma letra')
             continue
+
+        if letra.isdigit():
+            print('Não são permitidos números')
+            continue
     except:
         print('Foi informado um digito inválido')
 
-
-    i = 0
-    palavra_sendo_descoberta = ''
-    while i < len(palavra_secreta):
-        
-
-        if palavra_secreta[i] == letra:
-            palavra_sendo_descoberta += letra
-        else:   
-            palavra_sendo_descoberta += '*'
-
-        i += 1
-
-    palavra = palavra_sendo_descoberta
-    print(palavra)
+    for posicao in range(len(palavra_secreta)):
+        if palavra_secreta[posicao] == letra:
+            palavra_sendo_descoberta = palavra[:posicao] + letra + palavra[posicao + 1:]
+            palavra = palavra_sendo_descoberta
 
 
-
+    if palavra_sendo_descoberta == palavra_secreta:
+        print(f"A palavra secreta '{palavra}' foi descoberta")
+        break
+    else:
+        print(palavra)
 
 
     sair = input('Deseja sair [s]im: ').lower().startswith('s')
 
     if sair is True:
-        print(palavra)
+        palavra_sendo_descoberta = ''
+        palavra = ''
         break
-
-
-
-
