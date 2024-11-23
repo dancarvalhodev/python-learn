@@ -15,9 +15,12 @@ Faça a contagem de tentativas do seu
 usuário.
 """
 
+import os
+
 palavra_secreta = 'macaco'
 palavra = ''
 palavra_sendo_descoberta = ''
+tentativas = 0
 
 for letra in palavra_secreta:
     palavra += '*'
@@ -25,6 +28,7 @@ for letra in palavra_secreta:
 
 while True:
     try:
+        tentativas += 1
         letra = input('Digite uma letra: ').lower()
 
         if len(letra) != 1:
@@ -44,15 +48,16 @@ while True:
 
 
     if palavra_sendo_descoberta == palavra_secreta:
+        os.system('clear') 
+        
+        print('VOCÊ GANHOU!!!!!')
         print(f"A palavra secreta '{palavra}' foi descoberta")
+        print(f"Número de tentativas: {tentativas}")
+
+        palavra_sendo_descoberta = ''
+        palavra = ''
+        tentativas = ''
+
         break
     else:
         print(palavra)
-
-
-    sair = input('Deseja sair [s]im: ').lower().startswith('s')
-
-    if sair is True:
-        palavra_sendo_descoberta = ''
-        palavra = ''
-        break
